@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>结构</title>
+</head>
+<body>
+<script type="text/javascript">
+	// let [a, b, c] = [1, 2, 3];
+	// 	// 报错右边也必须是数组的格式
+	// let [foo] = 1;
+	// let [foo] = false;
+	// let [foo] = NaN;
+	// let [foo] = undefined;
+	// let [foo] = null;
+	// let [foo] = {};
+	// let [foo = true] = [];
+	// foo // true
+
+	// let [x, y = 'b'] = ['a']; // x='a', y='b'
+	// let [x, y = 'b'] = ['a', undefined]; // x='a', y='b'
+	// var a = undefined;
+	// var b = null;
+	// console.log(typeof a);//undefined
+	// console.log(typeof b);//object
+	// var a=4,b=65;
+	// function add(){
+	// 	return a+b;
+	// }
+	// var c=add();
+	// console.log(c);//69
+
+	// console.log(typeof c);//没定义或者是给赋值了    输出undefined
+
+	// let [x = 1] = [undefined];
+	// x // 1
+	// let [x = 1] = [null];
+	// x是null
+
+// 	function f() {
+//    console.log('aaa');
+//  }
+// let [x = f()] = [1];
+//  console.log(x);//x=1
+
+//  function f() {
+//    console.log('aaa');
+//  }
+// let [x = f()] = [undefined];  //先输出aaa在输出undefined
+//  console.log(x);//x=1
+
+//   function f() {
+//    console.log('aaa');
+//  }
+// let [y = f()] = [null];
+//  console.log(y);//x=1  输出null
+
+// let [x = 1, y = x] = [];     // x=1; y=1
+// let [x = 1, y = x] = [2];    // x=2; y=2
+// let [x = 1, y = x] = [1, 2]; // x=1; y=2
+// let [x = y, y = 1] = [];     // ReferenceError
+
+// let { foo, bar } = { foo: "aaa", bar: "bbb" };
+// foo // "aaa"   变量必须与属性同名，才能取到正确的值。
+// bar // "bbb"
+// let { baz } = { foo: "aaa", bar: "bbb" };
+// baz // undefined
+
+// let { foo, bar } = { foo: "aaa", bar: "bbb" };
+// console.log(foo);//输出aaa    对象里属性名称正确，顺序没有问题
+// let { foo, bar } = { bar: "bbb" , foo: "aaa" };
+// console.log(foo);//输出aaa
+
+// let { foo: baz } = { foo: "aaa", bar: "bbb" };
+// baz // "aaa"
+// foo // error: foo is not defined
+
+// var { foo: baz } = { foo: 'aaa', bar: 'bbb' };
+// baz // "aaa"
+// let obj = { first: 'hello', last: 'world' };
+// let { first: f, last: l } = obj;  //变量不与属性同名
+// f // 'hello'
+// l // 'world'
+
+// let obj = {
+//   p: [
+//     'Hello',
+//     { y: 'World' }
+//   ]
+// };
+
+// let { p: [x, { y }] } = obj;
+// x // "Hello"
+// y // "World"
+
+
+
+// let { p: [x, { y }] } = {
+//   p: [
+//     'Hello',
+//     { y: 'World' }
+//   ]
+// };
+// // x // "Hello"
+// // y // "World"
+
+// var node = {
+//   loc: {
+//     start: {
+//       line: 1,
+//       column: 5
+//     }
+//   }
+// };
+// 三次赋值，
+// var { loc, loc: { start }, loc: { start: { line }} } = node;
+// line // 1
+// loc  // Object {start: Object}
+// start // Object {line: 1, column: 5}
+
+// var {x = 3} = {};
+// x // 3
+// var {x, y = 5} = {x: 1};
+// x // 1
+// y // 5
+// var {x: y = 3} = {};
+// y // 3
+// var {x: y = 3} = {x: 5};
+// y // 5
+// var { message: msg = 'Something went wrong' } = {};
+// msg // "Something went wrong"
+
+// 报错
+// let {foo: {bar}} = {baz: 'baz'};  相当于==undefined.
+
+// let arr = [1, 2, 3];
+// let {0 : first, [arr.length - 1] : last} = arr;
+// first // 1
+// last // 3
+
+// function move({x = 0, y = 0} = {}) {
+//   return [x, y];
+// }
+
+// move({x: 3, y: 8}); // [3, 8]
+// move({x: 3}); // [3, 0]
+// move({}); // [0, 0]
+// move(); // [0, 0]
+下面代码是为函数move的参数指定默认值，而不是为变量x和y指定默认值，所以会得到与前一种写法不同的结果
+// function move({x, y} = { x: 0, y: 0 }) {
+//   return [x, y];
+// }
+
+// move({x: 3, y: 8}); // [3, 8]
+// move({x: 3}); // [3, undefined]
+// move({}); // [undefined, undefined]
+// move(); // [0, 0]
+
+
+// let x = 1;
+// let y = 2;
+// [x, y] = [y, x]; //变量的交换
+
+// function example() {
+//   return [1, 2, 3];
+// }
+// let [a, b, c] = example();
+
+// // 返回一个对象
+// function example() {
+//   return {
+//     foo: 1,
+//     bar: 2
+//   };
+// }
+// let { foo, bar } = example();
+
+// var map = new Map();
+// map.set('first', 'hello');
+// map.set('second', 'world');
+
+// for (let [key, value] of map) {
+//   console.log(key + " is " + value);
+// }
+// // first is hello
+// // second is world
+
+// // 获取键名
+// for (let [key] of map) {
+// }
+
+// // 获取键值
+// for (let [,value] of map) {
+// }
+ </script>
+</body>
+</html>
