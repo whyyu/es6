@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>es6</title>
+</head>
+<body>
+<!-- 	<ul id='ul1'>
+		<li>01</li>
+		<li>02</li>
+		<li>03</li>
+	</ul> -->
+<script type="text/javascript">
+	// var oUl=document.getElementById('ul1');
+	// var aLi=oUl.getElementsByTagName('li');
+	// for (let i = 0; i<aLi.length;i++){
+	// 	aLi[i].onclick=function(){
+	// 		console.log(i);
+		// }每次点击输出的i是3
+	// }
+
+	// var oUl=document.getElementById('ul1');
+	// var aLi=oUl.getElementsByTagName('li');
+	// for (let i = 0; i<aLi.length;i++){
+	// 	aLi[i].onclick=function(){
+	// 		console.log(i);
+	// 	 }//每次输出的i是自己的i
+	// }
+
+
+// ES6 新增了let命令，用来声明变量。它的用法类似于var，但是所声明的变量，只在let命令所在的代码块内有效
+
+// {
+// 	let a = 1;
+// 	var b = 2;
+// 	alert(b);
+// 	alert(a);
+// }
+// console.log(b);
+// console.log(a);  // a is not defined
+
+// for (var i = 0;i <10; i++){
+// }
+// console.log(i);
+// for (let j = 0;j < 10;js++){
+// }
+// console.log(j);     //j is not defined   
+
+// for (var i = 0;i <10; i++){
+// console.log(i);
+// }
+// //没有差别
+// for (let j = 0;j < 10;j++){
+// console.log(j);
+// }
+
+// var a = [];
+// for (var i = 0; i < 10; i++){
+// 	a[i]=function(){
+// 		console.log(i);
+// 	}
+// }
+// a[6]();  //输出10
+// var a = [];
+// for (let i = 0; i < 10; i++){
+// 	a[i]=function(){
+// 		console.log(i);
+// 	}
+// }
+// a[6]();  //输出6
+
+// for (let i = 0; i < 3;i++){
+// 	let i = "abc";
+// 	console.log(i);//输出3次abc
+// } 
+// for (var i = 0; i < 3;i++){
+// 	var i = "abc";
+// 	console.log(i);//输出1次abc
+// } 
+
+// console.log(a);//输出undefined
+// var a;
+// console.log(a);
+// let a;	//a is not defined
+
+// var a='aaa'
+// if (true){
+// 	console.log(a);//a is not defined 
+// 	let a = 'bbb'
+// }
+// var a='aaa'                                              “暂时性死区   使用let命令声明变量之前，该变量都是不可用的
+// if (true){
+// 	console.log(a);//输出aaa
+// 	var a = 'bbb'
+// }
+// var let='aaa'
+// if (true){
+// 	console.log(a);//undefined
+// 	var a = 'bbb'
+// }
+// let a='aaa'
+// if (true){
+// 	console.log(a);//a is not defined 
+// 	let a = 'bbb'
+// }
+
+// if (true) {
+//   // TDZ开始
+//   tmp = 'abc'; // ReferenceError
+//   console.log(tmp); // 只有一个输出 tmp is not a defined
+
+//   let tmp; // TDZ结束
+//   console.log(tmp); // undefined
+
+//   tmp = 123;
+//   console.log(tmp); // 123
+// }
+
+// console.log(typeof a);//a is not a defined
+// let a=2;
+// console.log(typeof a); //undefinen
+// var a=2;
+// console.log(typeof a)//undefined
+// var x=0;
+// function bar(x = y, y = 2) {
+//   return [x, y];
+// }
+// bar(); //y is not defined
+// let a=2;
+// let a=4;
+// console.log(a);//a 已经被定义了
+// var a = 2;
+// var a = 4;
+// console.log(a);//输出a=4
+// var a = 2;
+// let a = 4;
+// console.log(a);//输出'a' has already been declared
+// let a = 2;
+// var a = 4;
+// console.log(a);//输出'a' has already been declared
+// function func(arg) {
+//   {
+//     let arg; // 不报错
+//     console.log(arg);
+//   }
+// }
+// func(3);arg undefined
+// function func(arg) {
+//   let arg; // 报错
+//   console.log(arg);
+// }
+// func(5);//arg' has already been declared
+// var a = Date();
+// console.log(a);
+// var tmp = new Date();
+
+// function f() {
+//   console.log(tmp);//undefined
+//   if (false) {
+//     var tmp = 'hello world';
+//   }
+// f();
+//  var a=6;
+// function AA() {
+// 	console.log(a);//输出6
+// }
+// AA();
+// function f1() {
+//   let n = 5;
+//   if (true) {
+//     let n = 10;
+//   }
+//   console.log(n); // 5
+// }
+// f1();
+// ES6 规定，块级作用域之中，函数声明语句的行为类似于let，在块级作用域之外不可引用
+//在浏览器的 ES6 环境中，块级作用域内声明的函数，行为类似于var声明的变量。
+// let x = do {
+//   let t = f();
+//   t * t + 1;
+// };
+// console.log(x);
+// if(true){
+// 	function aa(){
+// 		console.log(333);
+// 	}
+// }
+// aa();
+
+// const foo = Object.freeze({});
+// // 常规模式时，下面一行不起作用；
+// // 严格模式时，该行会报错
+// foo.prop = 123;//把对象冻结
+
+// var a = 1;
+// // 如果在Node的REPL环境，可以写成global.a
+// // 或者采用通用方法，写成this.a
+// window.a // 1
+
+// let b = 1;
+// window.b // undefined
+</script>
+</body>
+</html>
